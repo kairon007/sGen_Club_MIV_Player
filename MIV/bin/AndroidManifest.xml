@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="miv.android"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    
+        <!-- GCM Service -->
+	<permission android:name="miv.android.permission.C2D_MESSAGE" android:protectionLevel="signature"></permission>
+	<uses-permission android:name="miv.android.permission.C2D_MESSAGE"/>
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	
+	
+	
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo" >
+        <activity
+            android:name="miv.android.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="miv.android.VideoPlayerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+        </activity>
+        <activity android:name="miv.android.MovieListActivity"
+            android:theme="@style/Theme">
+        </activity>
+        <activity
+            android:name="miv.android.OpeningActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+        	<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="miv.android.ConnectServer"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+  			  
+        </activity>
+        
+        <!-- GCM -->
+		<receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" 
+		    android:permission="com.google.android.c2dm.permission.SEND">
+		    <intent-filter>
+		        <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+		        <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+		        <action android:name="com.google.android.c2dm.intent.REGISTER"/>
+		        <category android:name="miv.android"/>
+		    </intent-filter>
+		</receiver>
+		
+		<service android:name=".GCMIntentService"></service>
+		
+    </application>
+
+</manifest>
